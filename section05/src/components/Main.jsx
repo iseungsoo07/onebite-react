@@ -4,15 +4,28 @@
 // 3. 모든 태그는 닫혀있어야 한다.
 // 4. 최상위 태그는 반드시 하나여야만 한다.
 
+import { Button } from "./Button";
+import Header from "./Header";
 import "./Main.css";
 
 const Main = () => {
-    const user = {
-        name: "이정환",
-        isLogin: true,
+    const buttonProps = {
+        text: "메일",
+        color: "red",
+        a: 1,
+        b: 2,
+        c: 3,
     };
 
-    return <>{user.isLogin ? <div className="logout">로그아웃</div> : <div>로그인</div>}</>;
+    return (
+        <>
+            <Button {...buttonProps} />
+            <Button text={"카페"} />
+            <Button text={"블로그"}>
+                <Header />
+            </Button>
+        </>
+    );
 };
 
 export default Main;
