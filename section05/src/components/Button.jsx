@@ -1,6 +1,15 @@
 export const Button = ({ text, color, children }) => {
+    const onClickButton = (e) => {
+        console.log(e);
+        console.log(text);
+    };
+
     return (
-        <button style={{ color: color }}>
+        <button
+            // onMouseEnter={onClickButton}
+            onClick={onClickButton}
+            style={{ color: color }}
+        >
             {text} - {color.toUpperCase()}
             {children}
         </button>
