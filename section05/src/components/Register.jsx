@@ -4,7 +4,7 @@
 // 3. 국적
 // 4. 자기소개
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export const Register = () => {
     const [input, setInput] = useState({
@@ -14,6 +14,8 @@ export const Register = () => {
         bio: "",
     });
 
+    const inputRef = useRef();
+
     const onChange = (e) => {
         setInput({
             ...input,
@@ -21,12 +23,19 @@ export const Register = () => {
         });
     };
 
+    const onSubmit = () => {
+        if (input.name === "") {
+            // 이름을 입력하는 DOM 요소에 focus
+            inputRef.current.focus();
+        }
+    };
+
     console.log(input);
 
     return (
         <div>
             <div>
-                <input name="name" onChange={onChange} placeholder={"이름"} value={input.name} />
+                <input ref={inputRef} name="name" onChange={onChange} placeholder={"이름"} value={input.name} />
             </div>
             <div>
                 <input name="birth" onChange={onChange} type="date" value={input.birth} />
@@ -42,6 +51,7 @@ export const Register = () => {
             <div>
                 <textarea name="bio" onChange={onChange} value={input.bio} />
             </div>
+            <button onClick={onSubmit}>제출</button>
         </div>
     );
 };
